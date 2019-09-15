@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+canvas {
+  display: block;
+}
+</style>
+</head>
+<body>
+<script>
+    var mwidth = 256;
+    var mheight = 256;
+    var maxinteration = 120;
+    var renderw = 640;
+    var renderh = 480;
+    var maxz = 200;
+
+    const clamp = (value) => value < 0 ? 0 : value > 255 ? 255 : value;
+
+    function rotrot(angle, point) {
+        var rad = angle * Math.PI / 180;
+        return {x:point.x * Math.cos(rad) - point.y * Math.sin(rad),
+                y:point.x * Math.sin(rad) + point.y * Math.cos(rad)};
+    }
+
+    function calcMandel(map) {
+        var x0, y0, x, y, iteration, xtemp, i, j;
+        var xmult = 3.0 / mwidth;
+        var ymult = 2.4 / mheight;
+        var pointer = 0;
+
+        for (i = 0; i < mheight; i++) {
+            for (j = 0; j < mwidth; j++) {
+                x0 = j * xmult - 2.25;
+                y0 = i * ymult - 1.2;
+                x = y = 0.0;
+                iteration = maxinteration;
+
+                while (x ** 2 + y ** 2 <= 4 && iteration-- > 0) {
+                    xtemp = x ** 2 - y ** 2 + x0;
+                    y = 2 * x * y + y0;
+                    x = xtemp;
+                }
+                map[pointer++] = maxinteration - iteration;
+            }
+        }
+    }
+
+    function drawMandel3(map, typedArray) {
+        for (var p = 0; p < mheight*mwidth; p++) {
+            switch (true) {
+                case (map[p] > maxinteration):
+                    typedArray[p] = 0xffb24020;
+                    break;
+                default:
+                    typedArray[p] = (0xff << 24) | (clamp(map[p] * 4) << 16) | (clamp(map[p] * 4) << 8) | clamp(map[p] * 4);
+            }
+        }
+    }
+
+/*
+ * fps counter borrowed directly from stackoverflow.
+ * https://stackoverflow.com/a/19775485
+ */
+    countFPS = (function () {
+        var lastLoop = (new Date()).getMilliseconds();
+        var count = 1;
+        var fps = 0;
+
+        return function () {
+            var currentLoop = (new Date()).getMilliseconds();
+            if (lastLoop > currentLoop) {
+                fps = count;
+                count = 1;
+            } else {
+                count += 1;
+            }
+            lastLoop = currentLoop;
+            return fps;
+        };
+    }());
+
+    function myFunction() {
+        var mandelMap = new Int8Array(mwidth * mheight);
+        calcMandel(mandelMap);
+
+        /*
+         * Background image.
+         */
+        var canv = document.createElement("CANVAS");
+        var ctx = canv.getContext("2d");
+        canv.width = mwidth;
+        canv.height = mheight;
+        canv.style.width = mwidth + "px";
+        canv.style.height = mheight + "px";
+        var imageData = ctx.getImageData(0,0, mwidth, mheight);
+        drawMandel3(mandelMap, new Uint32Array(imageData.data.buffer));
+        ctx.putImageData(imageData, 0, 0);
+        document.getElementsByTagName('html')[0].style.backgroundImage="url(" + canv.toDataURL() + ")";
+        document.getElementsByTagName('html')[0].style.backgroundSize="cover";
+        
+        /*
+         * Visible fps counter and browser identification.
+         */
+        var fps = document.createElement("OUTPUT");
+        fps.style.color = "white";
+        document.body.appendChild(fps);
+
+        /*
+         * Rotating Mandelbrot.
+         */
+        canv = document.createElement("CANVAS");
+        ctx2 = canv.getContext("2d");
+        canv.width = renderw;
+        canv.height = renderh;
+        canv.style.width = renderw + "px";
+        canv.style.height = renderh + "px";
+        document.body.appendChild(canv);
+
+        var imageData2 = ctx2.getImageData(0,0, renderw, renderh);
+        var typedArray = new Uint32Array(imageData2.data.buffer);
+
+        var startTime = (new Date()).getTime();
+        var agent = navigator.userAgent;
+        var oldfps = -1;
+
+        var ztable = new Array(maxz);
+
+        for (var i = 0; i < maxz; i++)
+            ztable[i] = 1/(420 + i * 4);
+
+        const intervalId2 = setInterval(() => {
+            var thisTime = (new Date()).getTime();
+            var angle = ((thisTime - startTime) / 100) % 360;
+            var newfps = countFPS();
+            if (newfps != oldfps) {
+                fps.innerHTML = "FPS: " + newfps + " " + agent;
+                oldfps = newfps;
+            }
+
+            direction = rotrot(angle, {x:-1.5, y:0});
+            pointy2 = rotrot(angle, {x:128, y:148});
+            pointy3 = rotrot(angle, {x:128, y:-148});
+
+            typedArray.fill(0);
+            var mancolor;
+            var mancolor2;
+            var height, xx, yy;
+
+            for (var x = 0; x < renderw; x++) {
+                var thispoint = {x:(pointy3.x - pointy2.x) * x / renderw + pointy2.x + mwidth / 2,
+                                 y:(pointy3.y - pointy2.y) * x / renderw + pointy2.y + mheight / 2};
+
+                var maxheight = renderh;
+
+                for (var z = 0; z < maxz; z++) {
+                    thispoint.x += direction.x;
+                    thispoint.y += direction.y;
+
+                    xx = thispoint.x|0;
+                    yy = thispoint.y|0;
+
+                    if (xx < 0 || xx >= mwidth || 
+                        yy < 0 || yy >= mheight)
+                        continue;
+
+                    mancolor = 255 - mandelMap[yy * mwidth + xx];
+                    height = (((mancolor + 280) << 9) * ztable[z])|0;
+                    
+                    if (height < 0)
+						height = 0;
+
+                    if (height < maxheight) {
+                        var drawValue;
+                        mancolor2 = 255 - mandelMap[yy * mwidth + xx+3];
+                        switch (true) {
+                            case (mancolor < 255 - maxinteration && mancolor == mancolor2):
+                                drawValue = 0xff7f7f7f;
+                                break;
+                            default:
+                                var temp = 7 + (mancolor2 - mancolor) / 2;
+                                drawValue = (0xff << 24) | (clamp(temp * 9) << 16) | (clamp(temp * 9) << 8) | clamp(192 + temp);
+                        }
+
+                        for (var i = height * renderw + x; i < maxheight * renderw; i += renderw)
+                            typedArray[i] = drawValue;
+
+                        maxheight = height;
+					}
+                }
+            }
+            ctx2.putImageData(imageData2, 0, 0);
+        }, 0);
+    }
+    myFunction();
+</script>
+</body>
+</html>
