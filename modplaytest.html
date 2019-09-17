@@ -131,6 +131,9 @@ var channels = [];
 					sampledata.push(sample);
 				}
 
+				// for interpolation, loop start value go to +1 place 
+				sampledata.push(sampledata[lsta]);
+
 				instruments.push({SAMPLE_DATA:sampledata, IN_LOOP_START:lsta, IN_LOOP_END:lend, IN_FINETUNE:fine, IN_VOLUME:vol});
 				spos += slen;
 		    }
@@ -384,7 +387,7 @@ var channels = [];
 // mixer here
 ////////////////////
 	function requestSoundData(soundData) {
-//		soundData.fill(0);
+		soundData.fill(0);
 		var offset = 0;
 		var len = soundData.length;
 
@@ -405,13 +408,19 @@ var channels = [];
 				var sdat = inst.SAMPLE_DATA;
 
 				var dontmix = llen <= 1 && spos >= lsta;
+				var tempspos, s1, s2, s3;
 
 				if (!dontmix)  {
 					for (var x = 0; x < count; x++, spos += step) {
 						while (spos >= lep)
 							spos -= llen;
 
-						soundData[offset+x] += sdat[spos|0] * ampl;
+						tempspos = spos|0;
+
+						s1 = sdat[tempspos];
+						s2 = sdat[tempspos+1];
+						s3 = (s2-s1)*(spos-tempspos) + s1;
+						soundData[offset+x] += s3 * ampl;
 					}
 				}
 				channel.CH_SPOS = spos;
@@ -433,7 +442,6 @@ var channels = [];
 		window.AudioContext = window.AudioContext||window.webkitAudioContext;
         audioCtx = new AudioContext();
 		var panner;
-		var temparray;
 
 		try {
 			if (navigator.userAgent.indexOf('AppleWebKit') != -1 || navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
@@ -452,15 +460,8 @@ var channels = [];
 
 		processNode = audioCtx.createScriptProcessor(2048, 0, 1);
 
-		temparray = new Array(2048).fill(0);
-
 		processNode.onaudioprocess = function(e) {
-			var s = e.outputBuffer.getChannelData(0);
-			for (var i = 0; i < 2048; i++)
-				s[i] = temparray[i];
-
-			temparray = new Array(2048).fill(0);
-            readFn(temparray);
+            readFn(e.outputBuffer.getChannelData(0));
 		};
 		if (isWebkit == false)
 			processNode.connect(panner).connect(audioCtx.destination);
