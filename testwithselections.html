@@ -17,6 +17,7 @@ var testmod2 = "YXNtIDk0LWludml0YXRpb24AAAAoYykgcHVycGxlIG1vdGlvbi9mYwAAB3EAQAAA
 
 var testmod = testmod1;
 var cleaer = true;
+var skipper = false;
 
 var lowesttime = 65536;
 var highesttime = 0;
@@ -474,6 +475,9 @@ var channels = [];
 			processNode = audioCtx.createScriptProcessor(usedbuffersize, 0, 1);
 
 			processNode.onaudioprocess = function(e) {
+				if (skipper)
+					return;
+
 				var chandata = e.outputBuffer.getChannelData(0);
 				var thisTime = window.performance.now();
 				readFn(chandata);
@@ -559,6 +563,12 @@ var audioDestination;
 			document.getElementById('clearer').checked = cleaer;
 			return;
 		}
+		if (modi == "skipper") {
+			skipper = skipper?false:true
+			document.getElementById('skipper').checked = skipper;
+			return;
+		}
+
 		testmod = modi;
 
 		var valinta = document.getElementsByName('moddii')
@@ -602,6 +612,14 @@ var audioDestination;
 		<li>
 			<div><input type="checkbox" id="clearer" checked name="clearer" onclick="modbox(this, 'cleaer')"/></div>
 			<div><label for="clearer">soundData.fill(0)</label></div>
+		</li>
+	</ul>
+
+	<h3>skip mixer to avoid garbage</h3>
+	<ul>
+		<li>
+			<div><input type="checkbox" id="skipper" name="skipper" onclick="modbox(this, 'skipper')"/></div>
+			<div><label for="skipper">skip</label></div>
 		</li>
 	</ul>
 
