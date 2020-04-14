@@ -18,6 +18,7 @@ var testmod2 = "YXNtIDk0LWludml0YXRpb24AAAAoYykgcHVycGxlIG1vdGlvbi9mYwAAB3EAQAAA
 var testmod = testmod1;
 var cleaer = true;
 var skipper = false;
+var skipperbuffer = undefined;
 
 var lowesttime = 65536;
 var highesttime = 0;
@@ -475,10 +476,20 @@ var channels = [];
 			processNode = audioCtx.createScriptProcessor(usedbuffersize, 0, 1);
 
 			processNode.onaudioprocess = function(e) {
-				if (skipper)
-					return;
-
 				var chandata = e.outputBuffer.getChannelData(0);
+
+				if (skipper) {
+					if (skipperbuffer == undefined) {
+						readFn(chandata);
+						skipperbuffer = [...chandata];
+					}
+					else
+						chandata = [...skipperbuffer];
+					return;
+				}
+
+				skipperbuffer = undefined;
+
 				var thisTime = window.performance.now();
 				readFn(chandata);
 				var newTime = window.performance.now();
