@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <title>Example</title>
+    <style type='text/css'>
+        body {
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="webgl" width="640" height="480"></canvas>
+    <div id="infos"></div>
+    <script>
+        var gl;
+        var mycanvas = {width:800, height:500};
+        try {
+            gl = document.getElementById("webgl").getContext("experimental-webgl");
+            if (!gl) { throw "x"; }
+        } catch (err) {
+            throw "Your web browser does not support WebGL!";
+        }
+
+        gl.canvas.width = mycanvas.width*2;
+        gl.canvas.height = mycanvas.height*2;
+        gl.canvas.style.width = mycanvas.width + "px";
+        gl.canvas.style.height = mycanvas.height + "px";
+
+        gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+
+        gl.clearColor(0.6, 0.2, 0.0, 1);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+
+        gl.canvas.addEventListener('mousemove', function(e) {
+            let divi = document.getElementById('infos');
+
+            if (divi == undefined)
+                return;
+
+            const rect = e.target.getBoundingClientRect();
+            const cssX = e.clientX - rect.left;
+            const cssY = e.clientY - rect.top;
+            divi.innerHTML = "event.target.getBoundingClientRect() top =" +rect.top+" left ="+rect.left + "<br> mouse client coodrinates: x:" + cssX + "\ty:" + cssY;
+        });
+
+    </script>
+</body>
+
