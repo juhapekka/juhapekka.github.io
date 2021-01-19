@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+        <title>testing page</title>
+    </head>
+    <body>
+        <div>
+        Time-of-day notations beyond 24:00 (such as 24:01 or 25:00 instead of 00:01 or 01:00) are not commonly used and not covered by the relevant standards. However, they have been used occasionally in some special contexts in the United Kingdom, France, Spain, Canada, Japan, South Korea, Hong Kong, and China where business hours extend beyond midnight, such as broadcast television production and scheduling.<br><a href="https://en.wikipedia.org/wiki/24-hour_clock">https://en.wikipedia.org/wiki/24-hour_clock</a>
+        </div>
+        <div id="testing">
+        </div>
+        <script type="text/javascript">
+            var resdiv = document.getElementById("testing");
+            var time = new Date();
+            time.setHours(0);
+            resdiv.innerHTML = "demo locale string past 24h on this browser says " + time.toLocaleString(undefined, {hour: 'numeric', minute: '2-digit', hour12: false});
+        </script>
+    </body>
+</html>
