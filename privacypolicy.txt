@@ -1,7 +1,2 @@
-Juhan rppg test privacy policy.
-
 No data is stored. No data is sent anywhere. Camera is used for realtime
-analysis of which results are presernted realtime to user.
-
-/Juha-Pekka Heikkilä
-juhapekka.heikkila@gmail.com
+analysis of which results are presented realtime to user.
