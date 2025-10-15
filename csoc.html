@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ethical Rules Cross-Reference</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+      background-color: #f9f9fb;
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    h1 {
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+    h2 {
+      margin-top: 30px;
+      border-left: 4px solid #3498db;
+      padding-left: 15px;
+    }
+    .main-list {
+      margin: 20px 0;
+      padding: 15px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      border: 1px solid #e0e0e0;
+    }
+    .main-list h3 {
+      margin-top: 0;
+      color: #2980b9;
+      font-size: 1.2em;
+      border-bottom: 1px dashed #bdc3c7;
+      padding-bottom: 5px;
+    }
+    .main-list ul {
+      padding-left: 20px;
+    }
+    .main-list li {
+      margin: 10px 0;
+      padding: 8px 12px;
+      background-color: #f8f9fa;
+      border-left: 3px solid #3498db;
+      font-size: 1em;
+    }
+    .cross-reference {
+      margin-top: 15px;
+      padding: 12px;
+      background-color: #e8f4fc;
+      border-left: 4px solid #2980b9;
+      font-size: 0.95em;
+      border-radius: 0 8px 8px 0;
+    }
+    .cross-reference strong {
+      color: #2c3e50;
+    }
+    .domain-header {
+      font-size: 1.1em;
+      font-weight: 600;
+      color: #2c3e50;
+      margin: 25px 0 10px;
+      padding: 0 10px;
+      background-color: #ecf0f1;
+      border-radius: 6px;
+    }
+    .domain-list {
+      margin-top: 10px;
+      padding-left: 20px;
+    }
+    .domain-list li {
+      margin: 10px 0;
+      padding: 8px 12px;
+      background-color: #f8f9fa;
+      border-left: 3px solid #3498db;
+      font-size: 0.95em;
+    }
+    .clickable {
+      cursor: pointer;
+      color: #3498db;
+      font-weight: 500;
+      text-decoration: underline;
+    }
+    .clickable:hover {
+      color: #2980b9;
+      text-decoration: underline;
+    }
+    .note {
+      font-size: 0.9em;
+      color: #7f8c8d;
+      margin-top: 10px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Ethical Rules Cross-Reference</h1>
+
+<p>
+  This interactive list connects ethical principles from three major IT/technology professional codes:
+  <span class="clickable" onclick="showSection('acm')">ACM Code of Ethics</span>, 
+  <span class="clickable" onclick="showSection('se')">Software Engineering Code of Ethics</span>, and 
+  <span class="clickable" onclick="showSection('tivia')">TIVIA Ethics Guidelines</span>.
+</p>
+
+<p class="note">
+  Click on any main list to see which rules from the other documents align with it. Rules are grouped by ethical domains.
+</p>
+
+<div id="acm-section" class="main-list">
+  <h3>ACM Code of Ethics & Professional Conduct</h3>
+  <ul>
+    <li><strong>1.1</strong> Contribute to society and to human well-being</li>
+    <li><strong>1.2</strong> Avoid harm</li>
+    <li><strong>1.3</strong> Be honest and trustworthy</li>
+    <li><strong>1.4</strong> Be fair and take action not to discriminate</li>
+    <li><strong>1.5</strong> Respect the work required to produce new ideas</li>
+    <li><strong>1.6</strong> Respect privacy</li>
+    <li><strong>1.7</strong> Honor confidentiality</li>
+    <li><strong>2.1</strong> Strive to achieve high quality in both processes and products</li>
+    <li><strong>2.2</strong> Maintain high standards of professional competence</li>
+    <li><strong>2.3</strong> Know and respect existing rules</li>
+    <li><strong>2.4</strong> Accept and provide appropriate professional review</li>
+    <li><strong>2.5</strong> Give comprehensive evaluations of systems and their impacts</li>
+    <li><strong>2.6</strong> Perform work only in areas of competence</li>
+    <li><strong>2.7</strong> Foster public awareness and understanding</li>
+    <li><strong>2.8</strong> Access computing resources only when authorized or in public good</li>
+    <li><strong>2.9</strong> Design and implement systems that are robustly and usably secure</li>
+    <li><strong>3.1</strong> Public good is central during all professional work</li>
+    <li><strong>3.2</strong> Articulate, encourage, and evaluate social responsibilities</li>
+    <li><strong>3.3</strong> Manage personnel and resources to enhance quality of working life</li>
+    <li><strong>3.4</strong> Articulate, apply, and support policies reflecting the Code</li>
+    <li><strong>3.5</strong> Create opportunities for professional growth</li>
+    <li><strong>3.6</strong> Use care when modifying or retiring systems</li>
+    <li><strong>3.7</strong> Recognize and take special care of systems integrated into society</li>
+    <li><strong>4.1</strong> Uphold, promote, and respect the principles of the Code</li>
+    <li><strong>4.2</strong> Treat violations of the Code as inconsistent with membership</li>
+  </ul>
+</div>
+
+<div id="se-section" class="main-list" style="display: none;">
+  <h3>Software Engineering Code of Ethics and Professional Practice</h3>
+  <ul>
+    <li><strong>1.01</strong> Accept full responsibility for their own work</li>
+    <li><strong>1.02</strong> Moderate the interests of the engineer, employer, client and users with the public good</li>
+    <li><strong>1.03</strong> Approve software only if safe, meets specs, and does not harm quality of life or privacy</li>
+    <li><strong>1.04</strong> Disclose actual or potential danger to users or environment</li>
+    <li><strong>1.05</strong> Cooperate in efforts to address matters of grave public concern</li>
+    <li><strong>1.06</strong> Be fair and avoid deception in public statements</li>
+    <li><strong>1.07</strong> Consider physical disabilities, economic disadvantage, and access issues</li>
+    <li><strong>1.08</strong> Volunteer professional skills to good causes and contribute to public education</li>
+    <li><strong>2.01</strong> Provide service in their areas of competence</li>
+    <li><strong>2.02</strong> Not knowingly use software obtained or retained illegally or unethically</li>
+    <li><strong>2.03</strong> Use client/employer property only with authorization and consent</li>
+    <li><strong>2.04</strong> Ensure documents are approved when required</li>
+    <li><strong>2.05</strong> Keep private confidential information where consistent with public interest and law</li>
+    <li><strong>2.06</strong> Identify, document, and report project risks (failure, cost, legal issues)</li>
+    <li><strong>2.07</strong> Identify and report significant social concerns in software</li>
+    <li><strong>2.08</strong> Accept no outside work detrimental to primary employer</li>
+    <li><strong>2.09</strong> Promote no interest adverse to employer or client unless higher ethical concern is compromised</li>
+    <li><strong>3.01</strong> Strive for high quality, acceptable cost, and reasonable schedule</li>
+    <li><strong>3.02</strong> Ensure proper and achievable project goals</li>
+    <li><strong>3.03</strong> Identify and address ethical, economic, cultural, legal, and environmental issues</li>
+    <li><strong>3.04</strong> Ensure qualification for any project through education, training, and experience</li>
+    <li><strong>3.05</strong> Ensure appropriate method is used for any project</li>
+    <li><strong>3.06</strong> Work to follow professional standards when available</li>
+    <li><strong>3.07</strong> Strive to fully understand software specifications</li>
+    <li><strong>3.08</strong> Ensure specifications are well documented, meet user needs, and have approvals</li>
+    <li><strong>3.09</strong> Ensure realistic cost, schedule, personnel, quality, and outcome estimates</li>
+    <li><strong>3.10</strong> Ensure adequate testing, debugging, and review</li>
+    <li><strong>3.11</strong> Ensure adequate documentation, including problems and solutions</li>
+    <li><strong>3.12</strong> Work to develop software that respects privacy</li>
+    <li><strong>3.13</strong> Use only accurate data derived by ethical and lawful means</li>
+    <li><strong>3.14</strong> Maintain data integrity, sensitive to outdated or flawed data</li>
+    <li><strong>3.15</strong> Treat all software maintenance with same professionalism as new development</li>
+    <li><strong>4.01</strong> Temper technical judgments with human values</li>
+    <li><strong>4.02</strong> Only endorse documents prepared under supervision or within competence</li>
+    <li><strong>4.03</strong> Maintain professional objectivity when evaluating software</li>
+    <li><strong>4.04</strong> Not engage in deceptive financial practices</li>
+    <li><strong>4.05</strong> Disclose conflicts of interest that cannot reasonably be avoided</li>
+    <li><strong>4.06</strong> Refuse to participate in bodies with undisclosed conflicts</li>
+    <li><strong>5.01</strong> Ensure good management for any project</li>
+    <li><strong>5.02</strong> Ensure engineers are informed of standards before being held to them</li>
+    <li><strong>5.03</strong> Ensure engineers know employer policies for protecting passwords and confidential data</li>
+    <li><strong>5.04</strong> Assign work only after considering education and experience</li>
+    <li><strong>5.05</strong> Ensure realistic estimates of cost, schedule, personnel, quality, and outcomes</li>
+    <li><strong>5.06</strong> Attract potential engineers only by full and accurate description of employment</li>
+    <li><strong>5.07</strong> Offer fair and just remuneration</li>
+    <li><strong>5.08</strong> Not unjustly prevent someone from taking a suitable position</li>
+    <li><strong>5.09</strong> Ensure fair agreement on ownership of software, processes, research, etc.</li>
+    <li><strong>5.10</strong> Provide due process in hearing charges of policy violation</li>
+    <li><strong>5.11</strong> Not ask engineers to do anything inconsistent with the Code</li>
+    <li><strong>5.12</strong> Not punish anyone for expressing ethical concerns</li>
+    <li><strong>6.01</strong> Help develop an organizational environment favorable to ethical behavior</li>
+    <li><strong>6.02</strong> Promote public knowledge of software engineering</li>
+    <li><strong>6.03</strong> Extend knowledge by participating in professional organizations</li>
+    <li><strong>6.04</strong> Support other software engineers striving to follow the Code</li>
+    <li><strong>6.05</strong> Not promote personal interest at expense of profession, client, or employer</li>
+    <li><strong>6.06</strong> Obey all laws unless compliance is inconsistent with public interest</li>
+    <li><strong>6.07</strong> Be accurate in stating characteristics of software, avoiding speculative or misleading claims</li>
+    <li><strong>6.08</strong> Take responsibility for detecting, correcting, and reporting errors</li>
+    <li><strong>6.09</strong> Ensure clients and supervisors know of commitment to the Code</li>
+    <li><strong>6.10</strong> Avoid associations with businesses conflicting with the Code</li>
+    <li><strong>6.11</strong> Recognize that violations are inconsistent with being a professional software engineer</li>
+    <li><strong>6.12</strong> Express concerns when significant violations are detected</li>
+    <li><strong>6.13</strong> Report significant violations to authorities when consultation is impossible or dangerous</li>
+    <li><strong>7.01</strong> Encourage colleagues to adhere to the Code</li>
+    <li><strong>7.02</strong> Assist colleagues in professional development</li>
+    <li><strong>7.03</strong> Credit fully the work of others and refrain from undue credit</li>
+    <li><strong>7.04</strong> Review work objectively, candidly, and properly documented</li>
+    <li><strong>7.05</strong> Give a fair hearing to colleagues’ opinions, concerns, or complaints</li>
+    <li><strong>7.06</strong> Assist colleagues in understanding standard practices (security, confidentiality)</li>
+    <li><strong>7.07</strong> Not unfairly intervene in a colleague’s career; may question competence for public interest</li>
+    <li><strong>7.08</strong> In situations outside competence, call upon other professionals</li>
+    <li><strong>8.01</strong> Further knowledge of software development and management</li>
+    <li><strong>8.02</strong> Improve ability to create safe, reliable, useful software</li>
+    <li><strong>8.03</strong> Improve ability to produce accurate, informative documentation</li>
+    <li><strong>8.04</strong> Improve understanding of software and its environment</li>
+    <li><strong>8.05</strong> Improve knowledge of relevant standards and laws</li>
+    <li><strong>8.06</strong> Improve knowledge of the Code, its interpretation, and application</li>
+    <li><strong>8.07</strong> Not give unfair treatment due to irrelevant prejudices</li>
+    <li><strong>8.08</strong> Not influence others to act in breach of the Code</li>
+    <li><strong>8.09</strong> Recognize that personal violations are inconsistent with being a professional</li>
+  </ul>
+</div>
+
+<div id="tivia-section" class="main-list" style="display: none;">
+  <h3>TIVIA Ethics Guidelines</h3>
+  <ul>
+    <li><strong>Authority and Responsibility</strong> IT professionals must not misuse their power; must face up to responsibility</li>
+    <li><strong>Knowledge and Experience</strong> Professionals must understand their limits; develop skills; respect confidentiality and client trust</li>
+    <li><strong>Attitude</strong> Professionals work not just for themselves, but for others; avoid greed; consider impact on others</li>
+    <li><strong>Communications</strong> Professionals must communicate clearly, inform clients of both good and bad news</li>
+    <li><strong>Consequences of Professionals’ Work</strong> IT work has chain-of-consequences ending with the user; must understand needs and wants of consumer, client, employer</li>
+    <li><strong>Other People</strong> Respect the work of others and their rights to creations; consider human rights, environmental questions, laws, and copyrights</li>
+    <li><strong>Promotion of Ethics</strong> Promote ethically sustainable ways of acting; ethics is about character and ongoing awareness of environment and people</li>
+  </ul>
+</div>
+
+<div class="domain-header">Ethical Domains & Cross-References</div>
+<div id="domain-list" class="domain-list">
+  <li><strong>Public Good & Societal Impact</strong>
+    <div class="cross-reference">
+      <strong>ACM 1.1–1.7</strong> ↔ <strong>SE Principles 1–3, 4–5</strong> ↔ <strong>TIVIA 'Attitude', 'Consequences'</strong>
+    </div>
+  </li>
+  <li><strong>Preventing Harm & Safety</strong>
+    <div class="cross-reference">
+      <strong>ACM 1.2</strong> ↔ <strong>SE 1.04, 1.05</strong> ↔ <strong>TIVIA 'Consequences', 'Attitude'</strong>
+    </div>
+  </li>
+  <li><strong>Privacy & Data Respect</strong>
+    <div class="cross-reference">
+      <strong>ACM 1.6</strong> ↔ <strong>SE 3.12, 3.13</strong> ↔ <strong>TIVIA 'Other People'</strong>
+    </div>
+  </li>
+  <li><strong>Integrity & Honesty</strong>
+    <div class="cross-reference">
+      <strong>ACM 1.3</strong> ↔ <strong>SE 4.01, 4.03, 4.04</strong> ↔ <strong>TIVIA 'Knowledge and Experience'</strong>
+    </div>
+  </li>
+  <li><strong>Fairness & Non-Discrimination</strong>
+    <div class="cross-reference">
+      <strong>ACM 1.4</strong> ↔ <strong>SE 1.07</strong> ↔ <strong>TIVIA 'Attitude'</strong>
+    </div>
+  </li>
+  <li><strong>Professional Competence & Responsibility</strong>
+    <div class="cross-reference">
+      <strong>ACM 2.1, 2.2, 2.6</strong> ↔ <strong>SE 2.01, 2.04, 2.06, 3.04, 3.05</strong> ↔ <strong>TIVIA 'Knowledge and Experience'</strong>
+    </div>
+  </li>
+  <li><strong>Confidentiality & Trust</strong>
+    <div class="cross-reference">
+      <strong>ACM 1.7</strong> ↔ <strong>SE 2.05</strong> ↔ <strong>TIVIA 'Knowledge and Experience'</strong>
+    </div>
+  </li>
+  <li><strong>Security & System Integrity</strong>
+    <div class="cross-reference">
+      <strong>ACM 2.9</strong> ↔ <strong>SE 3.14, 5.03</strong> ↔ <strong>TIVIA 'Attitude', 'Consequences'</strong>
+    </div>
+  </li>
+  <li><strong>Transparency & Communication</strong>
+    <div class="cross-reference">
+      <strong>ACM 2.7, 1.6</strong> ↔ <strong>SE 1.06, 3.11, 7.04</strong> ↔ <strong>TIVIA 'Communications'</strong>
+    </div>
+  </li>
+  <li><strong>Leadership & Ethical Management</strong>
+    <div class="cross-reference">
+      <strong>ACM 3.1–3.7</strong> ↔ <strong>SE 5.01–5.12, 6.01–6.13</strong> ↔ <strong>TIVIA 'Promotion of Ethics'</strong>
+    </div>
+  </li>
+  <li><strong>Continuous Learning & Professional Growth</strong>
+    <div class="cross-reference">
+      <strong>ACM 4.1</strong> ↔ <strong>SE 8.01–8.09</strong> ↔ <strong>TIVIA 'Promotion of Ethics'</strong>
+    </div>
+  </li>
+  <li><strong>Conflict of Interest & Ethical Judgment</strong>
+    <div class="cross-reference">
+      <strong>ACM 1.3, 4.1, 4.2</strong> ↔ <strong>SE 4.05, 4.06</strong> ↔ <strong>TIVIA 'Authority and Responsibility'</strong>
+    </div>
+  </li>
+</div>
+
+<script>
+  function showSection(id) {
+    const sections = ['acm-section', 'se-section', 'tivia-section'];
+    const domainList = document.getElementById('domain-list');
+    
+    // Hide all sections
+    sections.forEach(s => {
+      document.getElementById(s).style.display = 'none';
+    });
+
+    // Show selected section
+    document.getElementById(id + '-section').style.display = 'block';
+
+    // Update domain list based on selected section
+    let domainText = "";
+    if (id === 'acm') {
+      domainText = "ACM Focus Domains";
+      domainList.innerHTML = `
+        <li><strong>Public Good & Societal Impact</strong>
+          <div class="cross-reference">
+            <strong>ACM 1.1–1.7</strong> ↔ <strong>SE Principles 1–3, 4–5</strong> ↔ <strong>TIVIA 'Attitude', 'Consequences'</strong>
+          </div>
+        </li>
+        <li><strong>Preventing Harm & Safety</strong>
+          <div class="cross-reference">
+            <strong>ACM 1.2</strong> ↔ <strong>SE 1.04, 1.05</strong> ↔ <strong>TIVIA 'Consequences', 'Attitude'</strong>
+          </div>
+        </li>
+        <li><strong>Privacy & Data Respect</strong>
+          <div class="cross-reference">
+            <strong>ACM 1.6</strong> ↔ <strong>SE 3.12, 3.13</strong> ↔ <strong>TIVIA 'Other People'</strong>
+          </div>
+        </li>
+        <li><strong>Integrity & Honesty</strong>
+          <div class="cross-reference">
+            <strong>ACM 1.3</strong> ↔ <strong>SE 4.01, 4.03, 4.04</strong> ↔ <strong>TIVIA 'Knowledge and Experience'</strong>
+          </div>
+        </li>
+        <li><strong>Fairness & Non-Discrimination</strong>
+          <div class="cross-reference">
+            <strong>ACM 1.4</strong> ↔ <strong>SE 1.07</strong> ↔ <strong>TIVIA 'Attitude'</strong>
+          </div>
+        </li>
+        <li><strong>Professional Competence & Responsibility</strong>
+          <div class="cross-reference">
+            <strong>ACM 2.1, 2.2, 2.6</strong> ↔ <strong>SE 2.01, 2.04, 2.06, 3.04, 3.05</strong> ↔ <strong>TIVIA 'Knowledge and Experience'</strong>
+          </div>
+        </li>
+        <li><strong>Confidentiality & Trust</strong>
+          <div class="cross-reference">
+            <strong>ACM 1.7</strong> ↔ <strong>SE 2.05</strong> ↔ <strong>TIVIA 'Knowledge and Experience'</strong>
+          </div>
+        </li>
+        <li><strong>Security & System Integrity</strong>
+          <div class="cross-reference">
+            <strong>ACM 2.9</strong> ↔ <strong>SE 3.14, 5.03</strong> ↔ <strong>TIVIA 'Attitude', 'Consequences'</strong>
+          </div>
+        </li>
+        <li><strong>Transparency & Communication</strong>
+          <div class="cross-reference">
+            <strong>ACM 2.7, 1.6</strong> ↔ <strong>SE 1.06, 3.11, 7.04</strong> ↔ <strong>TIVIA 'Communications'</strong>
+          </div>
+        </li>
+        <li><strong>Leadership & Ethical Management</strong>
+          <div class="cross-reference">
+            <strong>ACM 3.1–3.7</strong> ↔ <strong>SE 5.01–5.12, 6.01–6.13</strong> ↔ <strong>TIVIA 'Promotion of Ethics'</strong>
+          </div>
+        </li>
+        <li><strong>Continuous Learning & Professional Growth</strong>
+          <div class="cross-reference">
+            <strong>ACM 4.1</strong> ↔ <strong>SE 8.01–8.09</strong> ↔ <strong>TIVIA 'Promotion of Ethics'</strong>
+          </div>
+        </li>
+        <li><strong>Conflict of Interest & Ethical Judgment</strong>
+          <div class="cross-reference">
+            <strong>ACM 1.3, 4.1, 4.2</strong> ↔ <strong>SE 4.05, 4.06</strong> ↔ <strong>TIVIA 'Authority and Responsibility'</strong>
+          </div>
+        </li>
+      `;
+    } else if (id === 'se') {
+      domainText = "SE Focus Domains";
+      domainList.innerHTML = `
+        <li><strong>Public Good & Societal Impact</strong>
+          <div class="cross-reference">
+            <strong>SE Principles 1–3, 4–5</strong> ↔ <strong>ACM 1.1–1.7</strong> ↔ <strong>TIVIA 'Attitude', 'Consequences'</strong>
+          </div>
+        </li>
+        <li><strong>Preventing Harm & Safety</strong>
+          <div class="cross-reference">
+            <strong>SE 1.04, 1.05</strong> ↔ <strong>ACM 1.2</strong> ↔ <strong>TIVIA 'Consequences', 'Attitude'</strong>
+          </div>
+        </li>
+        <li><strong>Privacy & Data Respect</strong>
+          <div class="cross-reference">
+            <strong>SE 3.12, 3.13</strong> ↔ <strong>ACM 1.6</strong> ↔ <strong>TIVIA 'Other People'</strong>
+          </div>
+        </li>
+        <li><strong>Integrity & Honesty</strong>
+          <div class="cross-reference">
+            <strong>SE 4.01, 4.03, 4.04</strong> ↔ <strong>ACM 1.3</strong> ↔ <strong>TIVIA 'Knowledge and Experience'</strong>
+          </div>
+        </li>
+        <li><strong>Fairness & Non-Discrimination</strong>
+          <div class="cross-reference">
+            <strong>SE 1.07</strong> ↔ <strong>ACM 1.4</strong> ↔ <strong>TIVIA 'Attitude'</strong>
+          </div>
+        </li>
+        <li><strong>Professional Competence & Responsibility</strong>
+          <div class="cross-reference">
+            <strong>SE 2.01, 2.04, 2.06, 3.04, 3.05</strong> ↔ <strong>ACM 2.1, 2.2, 2.6</strong> ↔ <strong>TIVIA 'Knowledge and Experience'</strong>
+          </div>
+        </li>
+        <li><strong>Confidentiality & Trust</strong>
+          <div class="cross-reference">
+            <strong>SE 2.05</strong> ↔ <strong>ACM 1.7</strong> ↔ <strong>TIVIA 'Knowledge and Experience'</strong>
+          </div>
+        </li>
+        <li><strong>Security & System Integrity</strong>
+          <div class="cross-reference">
+            <strong>SE 3.14, 5.03</strong> ↔ <strong>ACM 2.9</strong> ↔ <strong>TIVIA 'Attitude', 'Consequences'</strong>
+          </div>
+        </li>
+        <li><strong>Transparency & Communication</strong>
+          <div class="cross-reference">
+            <strong>SE 1.06, 3.11, 7.04</strong> ↔ <strong>ACM 2.7, 1.6</strong> ↔ <strong>TIVIA 'Communications'</strong>
+          </div>
+        </li>
+        <li><strong>Leadership & Ethical Management</strong>
+          <div class="cross-reference">
+            <strong>SE 5.01–5.12, 6.01–6.13</strong> ↔ <strong>ACM 3.1–3.7</strong> ↔ <strong>TIVIA 'Promotion of Ethics'</strong>
+          </div>
+        </li>
+        <li><strong>Continuous Learning & Professional Growth</strong>
+          <div class="cross-reference">
+            <strong>SE 8.01–8.09</strong> ↔ <strong>ACM 4.1</strong> ↔ <strong>TIVIA 'Promotion of Ethics'</strong>
+          </div>
+        </li>
+        <li><strong>Conflict of Interest & Ethical Judgment</strong>
+          <div class="cross-reference">
+            <strong>SE 4.05, 4.06</strong> ↔ <strong>ACM 1.3, 4.1, 4.2</strong> ↔ <strong>TIVIA 'Authority and Responsibility'</strong>
+          </div>
+        </li>
+      `;
+    } else if (id === 'tivia') {
+      domainText = "TIVIA Focus Domains";
+      domainList.innerHTML = `
+        <li><strong>Public Good & Societal Impact</strong>
+          <div class="cross-reference">
+            <strong>TIVIA 'Attitude', 'Consequences'</strong> ↔ <strong>ACM 1.1–1.7</strong> ↔ <strong>SE Principles 1–3, 4–5</strong>
+          </div>
+        </li>
+        <li><strong>Preventing Harm & Safety</strong>
+          <div class="cross-reference">
+            <strong>TIVIA 'Consequences', 'Attitude'</strong> ↔ <strong>ACM 1.2</strong> ↔ <strong>SE 1.04, 1.05</strong>
+          </div>
+        </li>
+        <li><strong>Privacy & Data Respect</strong>
+          <div class="cross-reference">
+            <strong>TIVIA 'Other People'</strong> ↔ <strong>ACM 1.6</strong> ↔ <strong>SE 3.12, 3.13</strong>
+          </div>
+        </li>
+        <li><strong>Integrity & Honesty</strong>
+          <div class="cross-reference">
+            <strong>TIVIA 'Knowledge and Experience'</strong> ↔ <strong>ACM 1.3</strong> ↔ <strong>SE 4.01, 4.03, 4.04</strong>
+          </div>
+        </li>
+        <li><strong>Fairness & Non-Discrimination</strong>
+          <div class="cross-reference">
+            <strong>TIVIA 'Attitude'</strong> ↔ <strong>ACM 1.4</strong> ↔ <strong>SE 1.07</strong>
+          </div>
+        </li>
+        <li><strong>Professional Competence & Responsibility</strong>
+          <div class="cross-reference">
+            <strong>TIVIA 'Knowledge and Experience'</strong> ↔ <strong>ACM 2.1, 2.2, 2.6</strong> ↔ <strong>SE 2.01, 2.04, 2.06, 3.04, 3.05</strong>
+          </div>
+        </li>
+        <li><strong>Confidentiality & Trust</strong>
+          <div class="cross-reference">
+            <strong>TIVIA 'Knowledge and Experience'</strong> ↔ <strong>ACM 1.7</strong> ↔ <strong>SE 2.05</strong>
+          </div>
+        </li>
+        <li><strong>Security & System Integrity</strong>
+          <div class="cross-reference">
+            <strong>TIVIA 'Attitude', 'Consequences'</strong> ↔ <strong>ACM 2.9</strong> ↔ <strong>SE 3.14, 5.03</strong>
+          </div>
+        </li>
+        <li><strong>Transparency & Communication</strong>
+          <div class="cross-reference">
+            <strong>TIVIA 'Communications'</strong> ↔ <strong>ACM 2.7, 1.6</strong> ↔ <strong>SE 1.06, 3.11, 7.04</strong>
+          </div>
+        </li>
+        <li><strong>Leadership & Ethical Management</strong>
+          <div class="cross-reference">
+            <strong>TIVIA 'Promotion of Ethics'</strong> ↔ <strong>ACM 3.1–3.7</strong> ↔ <strong>SE 5.01–5.12, 6.01–6.13</strong>
+          </div>
+        </li>
+        <li><strong>Continuous Learning & Professional Growth</strong>
+          <div class="cross-reference">
+            <strong>TIVIA 'Promotion of Ethics'</strong> ↔ <strong>ACM 4.1</strong> ↔ <strong>SE 8.01–8.09</strong>
+          </div>
+        </li>
+        <li><strong>Conflict of Interest & Ethical Judgment</strong>
+          <div class="cross-reference">
+            <strong>TIVIA 'Authority and Responsibility'</strong> ↔ <strong>ACM 1.3, 4.1, 4.2</strong> ↔ <strong>SE 4.05, 4.06</strong>
+          </div>
+        </li>
+      `;
+    }
+  }
+
+  // Default to ACM view
+  window.onload = function() {
+    showSection('acm');
+  };
+</script>
+
+</body>
+</html>
+
