@@ -1,0 +1,52 @@
+:root { 
+    color-scheme: dark;
+    font-family: ui-rounded, system-ui, sans-serif;
+    background: #101815; color: #f1ecdc;
+}
+
+body { 
+    min-height: 100vh;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    background: radial-gradient(circle at top, #284a3f, #101815 60%);
+}
+
+main {
+    width: min(92vw, 570px);
+    padding: 24px 0 30px;
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, minmax(0, 1fr));
+    border: 7px solid #d2a66d;
+    box-shadow: 0 18px 48px #05080688;aspect-ratio: 1;
+}
+
+.square {
+    position: relative;
+    border: 0;
+    padding: 0;
+    font-size: clamp(1.7rem, 8.6vw, 4.15rem);
+    line-height: 1;
+    cursor: pointer;
+    text-shadow: 0 2px 1px #0009;
+
+}
+
+.valkoinen-nappula {
+    color: #fff8e7;
+}
+.musta-nappula { 
+    color: #30231e; 
+    text-shadow: 0 1px 0 #f0cc93aa;
+}
+
+.light {
+    background: #edc987;
+}
+.dark {
+    background: #936342;
+}
