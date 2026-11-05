@@ -45,7 +45,7 @@ function squareIndex(column, row) {
 function isOnBoard(column, row) {
   return column >= 0 && column < 8 && row >= 0 && row < 8;
 }
-/*
+
 function createInitialBoard() {
   return [
     'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R',
@@ -54,16 +54,7 @@ function createInitialBoard() {
     'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p',
     'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'
   ];
-}*/
-
-function createInitialBoard() {
-  return [
-    'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R',
-    ...Array(32 + 2*8).fill(null),
-    'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'
-  ];
 }
-
 
 function getSquareDisplayOrder() {
   const squares = [];
@@ -234,14 +225,14 @@ function generateMoves(position, from, attackOnly = false) {
     addPawnMoves(position, moves, from, attackOnly);
   else if (pieceType == 'n') 
     addKnightMoves(position, moves, from);
-  else if (pieceType == 'k')
-    addKingMoves(position, moves, from);
   else if (pieceType == 'b')
     addSlidingMoves(position, moves, from, [[1, 1], [1, -1], [-1, 1], [-1, -1]]);
   else if (pieceType == 'r')
     addSlidingMoves(position, moves, from, [[1, 0], [-1, 0], [0, 1], [0, -1]]);
   else if (pieceType == 'q')
     addSlidingMoves(position, moves, from, [[1, 1], [1, -1], [-1, 1], [-1, -1], [1, 0], [-1, 0], [0, 1], [0, -1]]);
+  else if (pieceType == 'k')
+    addKingMoves(position, moves, from);
 
   // Matti tunnistetaan jos kuningasta vastaan hyökätään ja kuninkaalla
   // ei ole laillisia siirtoja
@@ -301,10 +292,10 @@ function getLegalMoves(position, movingColor) {
 
 
 function isWhiteTargetSquare(square) {
-  if (selectedSquare === null)
+  if (selectedSquare == null)
     return false;
 
-  return getLegalMoves(board, 'valkoinen').some(move => move.from === selectedSquare && move.to === square);
+  return getLegalMoves(board, 'valkoinen').some(move => move.from == selectedSquare && move.to == square);
 }
 
 
@@ -328,14 +319,29 @@ function createSquareButton(square) {
     piece ? `${colorName}-nappula` : ''
   ].filter(Boolean).join(' ');
   button.textContent = getPieceGlyph(piece);
-  button.onclick = () => handleSquareClick(square);
+  button.onclick = () => handleSquareClick(square, isTarget);
   return button;
 }
 
-function handleSquareClick(square) {
-  selectedSquare = square;
-  console.log(square);
+function makePlayerMove(move) {
+  board = applyMove(board, move);
+  selectedSquare = null;
   renderBoard();
+}
+
+function handleSquareClick(square, isTarget) {
+
+  if (selectedSquare != null && isTarget) {
+    const selectedMove = getLegalMoves(board, 'valkoinen').find(move => move.from == selectedSquare && move.to == square);
+    makePlayerMove(selectedMove);
+    return;
+  }
+
+  if (getPieceColor(board[square]) == 'valkoinen') {
+    selectedSquare = square;
+    renderBoard();
+  }
+
 }
 
 function renderBoard() {
