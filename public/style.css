@@ -50,3 +50,36 @@ main {
 .dark {
     background: #936342;
 }
+
+.square.selected::after, .square.target::after {
+    content: '';
+    position: absolute;
+    inset: 33%;
+    border-radius:
+    50%; background: #223e36a8;
+}
+
+.square.selected::after {
+    inset: 7%;
+    border: 4px solid #f3c965;
+    background: transparent;
+}
+
+.square.piece.target::after {
+    inset: 9%;
+    border: 4px solid #b94739;
+    background: transparent;
+}
+
+button, select {
+    font: inherit;
+    border: 1px solid #cf9b58;
+    border-radius: 5px;
+    padding: 9px 13px;
+    background: #20352e;
+    color: #f1ecdc;
+}
+
+button:hover {
+    background: #2e4a3e;
+}
