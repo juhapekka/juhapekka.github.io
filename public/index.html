@@ -8,8 +8,19 @@
 <body>
   <main>
     <h1>JuhaShakki</h1>
-
+    <p id="status" aria-live="polite">Sun vuoro — sä pelaat valkoisilla</p>
     <div id="board" role="grid">1234</div>
+
+    <label class="vaikeusluokka" for="vaikeus">
+      Vaikeus aste_
+      <select id="vaikeus">
+        <option value="helppo">Helppo</option>
+        <option value="normaali">Normaali</option>
+        <option value="vaikea" selected>Vaikea</option>
+      </select>
+    </label>
+    <button id="uusipeli">Uusi peli</button>
+
 
     </p>
   </main>
