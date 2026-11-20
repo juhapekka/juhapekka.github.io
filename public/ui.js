@@ -1,3 +1,40 @@
+// Laudalla on shakkikoodit ('P', 'n, jne) Tehdään taulut missä
+// on koko nimet mitkä yhdistää shakkikoodit näkyviin merkkeihin
+const PIECE_GLYPHS = Object.freeze({
+	valkoinenSotilas: '♙',
+	valkoinenHevonen: '♘',
+	valkoinenLahetti: '♗',
+	valkoinenTorni: '♖',
+	valkoinenKuningatar: '♕',
+	valkoinenKuningas: '♔',
+	mustaSotilas: '♟',
+	mustaHevonen: '♞',
+	mustaLahetti: '♝',
+	mustaTorni: '♜',
+	mustaKuningatar: '♛',
+	mustaKuningas: '♚'
+});
+
+const PIECE_NAMES = Object.freeze({
+	p: 'Sotilas',
+	n: 'Hevonen',
+	b: 'Lahetti',
+	r: 'Torni',
+	q: 'Kuningatar',
+	k: 'Kuningas'
+});
+
+const DIFFICULTY_SETTINGS = Object.freeze({
+	easy: { name: 'Helppo', depth: 0 },
+	normal: { name: 'Normaali', depth: 1 },
+	difficult: { name: 'vaikea', depth: 2 }
+});
+
+const difficultyElement = document.querySelector('#vaikeus');
+const boardElement = document.querySelector('#board');
+const statusElement = document.querySelector('#status');
+let selectedSquare = null;
+
 function getSquareDisplayOrder() {
 	const squares = [];
 
@@ -59,5 +96,5 @@ function renderBoard() {
 }
 
 function getSelectedDifficulty() {
-	return VAIKEUS_ASETUKSET[difficultyElement.value];
+	return DIFFICULTY_SETTINGS[difficultyElement.value];
 }

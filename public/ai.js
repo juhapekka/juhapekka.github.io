@@ -1,3 +1,13 @@
+// nappuloiden arvostus
+const PIECE_VALUES = Object.freeze({
+	p: 100,
+	n: 320,
+	b: 330,
+	r: 500,
+	q: 900,
+	k: 0
+});
+
 // evaluateSituationForBlack on mutu heuristiikka
 // idea on arvioida tilannetta sotilaiden, ratsujen ja lähettiensä keskustan sijainnin suhteen
 // pisteytys on mustan perspektiivistä -> positiivinen arvo -> suosii mustaa
@@ -100,10 +110,10 @@ function minimaxab(tilanne, vuoro, syvyys, alpha = -Infinity, beta = Infinity) {
 }
 
 // Haun idea: tutkitaan kaikki mustan lailliset siirrot mitkä nyt voi tehdä
-// ja palautetaan niistä paras. nykyistä siirtoa ei lasketa hakysyvyys mukaan vaan
+// ja palautetaan niistä paras. nykyistä siirtoa ei lasketa depth mukaan vaan
 // se kertoo kuinka monta puolisiirtoa tutkitaan mustalle ehdotetun siirron jälkeen
-function chooseSearchedMove(hakysyvyys) {
-	const legalBlackMoves = getLegalMoves(board, 'musta');
+function chooseSearchedMove(position, depth) {
+	const legalBlackMoves = getLegalMoves(position, 'musta');
 	let maxSiirto;
 	let maxPisteet = -Infinity;
 
@@ -111,7 +121,7 @@ function chooseSearchedMove(hakysyvyys) {
 		// jos musta olisi tehnyt ehdotetun siirron, aletaan hakea alkaa valkoisen vastauksia
 		// tämänhetkinen maxPisteet annetaan alphaksi: jos uusi haara ei voi ylittää
 		// sitä voi alpha-beta-karsinta lopettaa haaran aiemmin
-		const pisteet = minimaxab(applyMove(board, mustaMove), 'valkoinen', hakysyvyys, maxPisteet, Infinity);
+		const pisteet = minimaxab(applyMove(position, mustaMove), 'valkoinen', depth, maxPisteet, Infinity);
 		if (pisteet > maxPisteet) {
 			// pidetään muistissa tähän asti paras mustan siirto ja sen arvio
 			maxPisteet = pisteet;

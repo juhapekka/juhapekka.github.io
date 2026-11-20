@@ -1,55 +1,3 @@
-const boardElement = document.querySelector('#board');
-const statusElement = document.querySelector('#status');
-
-//lauta
-let board;
-let selectedSquare = null;
-let historia;
-let isGameFinished;
-
-// Laudalla on shakkikoodit ('P', 'n, jne) Tehdään taulut missä
-// on koko nimet mitkä yhdistää shakkikoodit näkyviin merkkeihin
-const PIECE_GLYPHS = Object.freeze({
-  valkoinenSotilas: '♙',
-  valkoinenHevonen: '♘',
-  valkoinenLahetti: '♗',
-  valkoinenTorni: '♖',
-  valkoinenKuningatar: '♕',
-  valkoinenKuningas: '♔',
-  mustaSotilas: '♟',
-  mustaHevonen: '♞',
-  mustaLahetti: '♝',
-  mustaTorni: '♜',
-  mustaKuningatar: '♛',
-  mustaKuningas: '♚'
-});
-
-const PIECE_NAMES = Object.freeze({
-  p: 'Sotilas',
-  n: 'Hevonen',
-  b: 'Lahetti',
-  r: 'Torni',
-  q: 'Kuningatar',
-  k: 'Kuningas'
-});
-
-// nappuloiden arvostus
-const PIECE_VALUES = Object.freeze({
-  p: 100,
-  n: 320,
-  b: 330,
-  r: 500,
-  q: 900,
-  k: 0
-});
-
-const VAIKEUS_ASETUKSET = Object.freeze({
-  helppo: { nimi: 'Helppo', syvyys: 0 },
-  normaali: { nimi: 'Normaali', syvyys: 1 },
-  vaikea: { nimi: 'vaikea', syvyys: 2 }
-});
-
-const difficultyElement = document.querySelector('#vaikeus');
 
 function checkForGameEnd(sideToMove) {
   const legalMoves = getLegalMoves(board, sideToMove);
@@ -76,11 +24,8 @@ function makeComputerMove() {
   if (isGameFinished || checkForGameEnd('musta'))
     return;
 
-  vaikeus = getSelectedDifficulty();
-
-
-  //console.log("syvyys " + vaikeus.syvyys);
-  move = chooseSearchedMove(vaikeus.syvyys);
+  const difficulty = getSelectedDifficulty();
+  const move = chooseSearchedMove(board, difficulty.depth);
 
   if (!move)
     return;
@@ -133,8 +78,8 @@ function resetGame() {
   historia = [];
   isGameFinished = false;
   selectedSquare = null;
-  vaikeus = getSelectedDifficulty();
-  statusElement.textContent = `Sun siirto, sä pelaat valkoisilla. ${vaikeus.nimi} vaikeus aste.`;
+  const difficulty = getSelectedDifficulty();
+  statusElement.textContent = `Sun siirto, sä pelaat valkoisilla. ${difficulty.name} vaikeus aste.`;
   board = createInitialBoard();
   renderBoard();
 }

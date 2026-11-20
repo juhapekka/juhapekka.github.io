@@ -1,3 +1,8 @@
+//lauta
+let board;
+let historia;
+let isGameFinished;
+
 function column(square) {
 	return square & 7;
 }
